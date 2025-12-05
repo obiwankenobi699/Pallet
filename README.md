@@ -1,4 +1,4 @@
-# 🤖 AI Voice Agent Platform
+# 🤖 Pallets AI Voice Agent Platform
 
 > **Enterprise-Grade Voice AI Solution for Real-Time Customer Service & Appointment Booking**
 
@@ -104,14 +104,14 @@ Our platform leverages **Murf AI's Falcon model** for text-to-speech synthesis, 
     │              CORE AI SERVICES                      │
     ├──────────────┬──────────────┬──────────────────────┤
     │  OpenAI      │  Deepgram    │  Murf AI Falcon     │
-    │  Realtime    │  STT         │  TTS                │
+    │              │  STT         │  TTS                │
     └──────────────┴──────────────┴──────────────────────┘
                               │
     ┌─────────────────────────▼──────────────────────────┐
     │            INTEGRATION LAYER                        │
     ├──────────────┬──────────────┬──────────────────────┤
     │  LiveKit     │  SIP Gateway │  Webhook Manager     │
-    │  Real-time   │  Telephony   │  Event System        │
+    │              │  Telephony   │  Event System        │
     └──────────────┴──────────────┴──────────────────────┘
 ```
 
@@ -120,7 +120,7 @@ Our platform leverages **Murf AI's Falcon model** for text-to-speech synthesis, 
 ```mermaid
 graph TB
     A[Customer Interaction] -->|Voice Input| B[Deepgram STT]
-    B -->|Text| C[OpenAI Realtime API]
+    B -->|Text| C[OpenAI  API]
     C -->|Processing| D[Interrupt Corrector]
     D -->|Response Text| E[Murf AI Falcon TTS]
     E -->|Audio Output| F[Customer Receives Response]
@@ -156,7 +156,7 @@ graph TB
 
 | Service | Purpose | Key Benefits |
 |---------|---------|--------------|
-| **OpenAI Realtime API** | Conversational AI brain | Context-aware responses, multi-turn conversations |
+| **OpenAI  API** | Conversational AI brain | Context-aware responses, multi-turn conversations |
 | **Deepgram** | Speech-to-Text | Industry-leading accuracy, real-time streaming |
 | **Murf AI Falcon** | Text-to-Speech | Studio-quality voices, emotional expressiveness |
 | **Interrupt Corrector** | Conversation Flow | Natural dialogue with interruption handling |
@@ -165,7 +165,7 @@ graph TB
 
 | Technology | Purpose |
 |------------|---------|
-| **LiveKit** | Low-latency real-time media streaming |
+| **LiveKit** | Low-latency  media streaming |
 | **SIP Gateway** | Traditional phone system integration |
 | **WebRTC** | Browser-based voice communication |
 
@@ -225,126 +225,6 @@ Books Appointment → Sends Confirmation → Updates EMR System
 - Order status checks
 - Escalation to human agents
 - Multi-language support
-
----
-
-## 🔌 Integration Guide
-
-### Quick Integration (5 Minutes)
-
-#### Web Widget Integration
-
-```html
-<!-- Add to your website -->
-<script src="https://your-platform.com/widget.js"></script>
-<script>
-  AIVoiceAgent.init({
-    apiKey: 'your_api_key',
-    businessId: 'your_business_id',
-    position: 'bottom-right',
-    primaryColor: '#4F46E5'
-  });
-</script>
-```
-
-#### Phone Integration (SIP)
-
-```javascript
-// Configure SIP trunk
-const sipConfig = {
-  endpoint: 'sip.your-platform.com',
-  username: 'your_business_id',
-  password: 'your_sip_secret',
-  transport: 'wss' // or 'tcp'
-};
-
-// Forward calls to AI agent
-sipClient.forward('+1234567890', sipConfig);
-```
-
-### Advanced Integration
-
-#### REST API Example
-
-```javascript
-// Book appointment via API
-const response = await fetch('https://api.your-platform.com/v1/appointments', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    customerId: 'customer_123',
-    serviceType: 'haircut',
-    preferredTime: '2024-12-10T14:00:00Z',
-    agentId: 'agent_456'
-  })
-});
-
-const appointment = await response.json();
-```
-
-#### WebSocket Real-Time Updates
-
-```javascript
-const ws = new WebSocket('wss://api.your-platform.com/v1/stream');
-
-ws.on('message', (data) => {
-  const event = JSON.parse(data);
-  
-  switch(event.type) {
-    case 'appointment_booked':
-      console.log('New appointment:', event.data);
-      break;
-    case 'call_started':
-      console.log('Call initiated:', event.data);
-      break;
-    case 'agent_response':
-      console.log('AI response:', event.data.transcript);
-      break;
-  }
-});
-```
-
----
-
-## 📊 Performance Metrics
-
-### Voice Processing Performance
-
-| Metric | Target | Achieved |
-|--------|--------|----------|
-| **Speech-to-Text Latency** | <100ms | 85ms avg |
-| **AI Response Time** | <500ms | 420ms avg |
-| **Text-to-Speech Generation** | <100ms | 75ms avg |
-| **End-to-End Latency** | <1000ms | 850ms avg |
-| **Accuracy Rate** | >95% | 97.3% |
-
-### System Reliability
-
-```
-┌─────────────────────────────────────────────┐
-│ Uptime: 99.95%                              │
-│ ████████████████████████████████████░░ 99.9%│
-│                                             │
-│ Call Success Rate: 98.7%                    │
-│ ███████████████████████████████████░░░ 98.7%│
-│                                             │
-│ Customer Satisfaction: 4.8/5                │
-│ ████████████████████████████████░░░░░ 96.0% │
-└─────────────────────────────────────────────┘
-```
-
-### Scalability
-
-| Load Level | Concurrent Calls | Response Time | Status |
-|------------|------------------|---------------|--------|
-| Light | 1-100 | <800ms | ✅ Optimal |
-| Medium | 101-500 | <900ms | ✅ Good |
-| Heavy | 501-1000 | <1200ms | ✅ Acceptable |
-| Peak | 1000+ | <1500ms | ✅ Auto-scaling |
-
 ---
 
 ## 🚀 Getting Started
@@ -429,129 +309,6 @@ curl http://localhost:3000/api/health
   }
 }
 ```
-
----
-
-## ⚙️ Configuration
-
-### Multi-Agent Setup
-
-```javascript
-// config/agents.js
-export const agentConfig = {
-  agents: [
-    {
-      id: 'agent_reception',
-      name: 'Reception Agent',
-      voice: 'murf_en_us_female_professional',
-      personality: 'friendly_professional',
-      capabilities: ['appointment_booking', 'general_inquiry'],
-      businessHours: '09:00-17:00',
-      language: 'en-US'
-    },
-    {
-      id: 'agent_support',
-      name: 'Technical Support',
-      voice: 'murf_en_us_male_confident',
-      personality: 'technical_helpful',
-      capabilities: ['troubleshooting', 'product_info'],
-      availability: '24/7',
-      language: 'en-US'
-    }
-  ]
-};
-```
-
-### Custom Webhook Configuration
-
-```javascript
-// config/webhooks.js
-export const webhookConfig = {
-  endpoints: {
-    appointmentBooked: 'https://your-crm.com/webhooks/appointment',
-    callCompleted: 'https://your-analytics.com/webhooks/call',
-    agentEscalation: 'https://your-support.com/webhooks/escalate'
-  },
-  retryPolicy: {
-    maxRetries: 3,
-    backoffMultiplier: 2,
-    initialDelay: 1000
-  }
-};
-```
-
----
-
-## 🚢 Deployment
-
-### Vercel Deployment (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
-```
-
-### Docker Deployment
-
-```dockerfile
-# Dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-
-COPY . .
-RUN npm run build
-
-EXPOSE 3000
-CMD ["npm", "start"]
-```
-
-```bash
-# Build and run
-docker build -t ai-voice-agent .
-docker run -p 3000:3000 ai-voice-agent
-```
-
-### AWS Deployment
-
-```bash
-# Using AWS Elastic Beanstalk
-eb init -p node.js ai-voice-agent
-eb create production-env
-eb deploy
-```
-
----
-
-## 🔒 Security & Compliance
-
-### Security Features
-
-- ✅ End-to-end encryption (TLS 1.3)
-- ✅ API key authentication with rate limiting
-- ✅ GDPR-compliant data handling
-- ✅ HIPAA-ready deployment options
-- ✅ PCI DSS compliance for payment integration
-- ✅ SOC 2 Type II certified infrastructure
-
-### Data Protection
-
-```javascript
-// Automatic PII redaction
-const dataProtection = {
-  redactPII: true,
-  maskCreditCards: true,
-  encryptAtRest: true,
-  dataRetention: '90-days',
-  rightToErasure: true
-};
-```
-
 ---
 
 ## 📈 Monitoring & Analytics
@@ -570,38 +327,6 @@ Access your analytics dashboard at `https://dashboard.your-platform.com`
 
 ---
 
-## 🤝 Support
-
-### Documentation
-
-- **Full Documentation**: https://docs.your-platform.com
-- **API Reference**: https://api.your-platform.com/docs
-- **Video Tutorials**: https://learn.your-platform.com
-
-### Community & Help
-
-- **Discord Community**: [Join our Discord](https://discord.gg/yourserver)
-- **Email Support**: support@your-platform.com
-- **Enterprise Support**: enterprise@your-platform.com
-- **GitHub Issues**: [Report bugs](https://github.com/your-company/ai-voice-agent/issues)
-
-### SLA (Enterprise Plans)
-
-| Plan | Response Time | Uptime Guarantee |
-|------|---------------|------------------|
-| Starter | 48 hours | 99.5% |
-| Professional | 24 hours | 99.9% |
-| Enterprise | 4 hours | 99.95% |
-| Enterprise+ | 1 hour | 99.99% |
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 🌟 Acknowledgments
 
 Powered by industry-leading AI and voice technologies:
@@ -614,7 +339,6 @@ Powered by industry-leading AI and voice technologies:
 
 <div align="center">
 
-**Built with ❤️ for the future of customer service**
 
 [Website](https://your-platform.com) • [Documentation](https://docs.your-platform.com) • [Blog](https://blog.your-platform.com)
 
